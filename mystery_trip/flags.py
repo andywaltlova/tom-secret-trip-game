@@ -28,9 +28,7 @@ def index():
         print(result)
         result = 'No luck. I would try different number!' if result is None else 'FLAG 8: ' + result['flag_text']
 
-    res = make_response(render_template(
+    return render_template(
         'flags.html',
         result=result,
-    ))
-    res.set_cookie('FLAG-9', value='ZXJ5LXRy')
-    return res
+    )

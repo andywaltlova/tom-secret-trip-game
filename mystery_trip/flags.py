@@ -1,5 +1,5 @@
 from flask import (
-    Blueprint, render_template, request
+    Blueprint, render_template, request, make_response
 )
 
 
@@ -28,7 +28,9 @@ def index():
         print(result)
         result = 'No luck. I would try different number!' if result is None else 'FLAG 8: ' + result['flag_text']
 
-    return render_template(
+    res = make_response(render_template(
         'flags.html',
         result=result,
-    )
+    ))
+    res.set_cookie('FLAG-9', value='ZXJ5LXRy')
+    return res

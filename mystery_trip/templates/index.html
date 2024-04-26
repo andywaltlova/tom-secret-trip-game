@@ -79,6 +79,21 @@
             const targetDate = new Date('{{ target_date }}');
             startCountdown(targetDate);
         };
+
+        function reassembleString(scrambledString, indexes) {
+            const orderedArray = new Array(scrambledString.length);
+            for (let i = 0; i < indexes.length; i++) {
+                const position = indexes[i];
+                orderedArray[position] = scrambledString[i];
+            }
+            return orderedArray.join('');
+        }
+
+        const scrambledString = 'FG9-ZA:JX RL5yXL';
+        const indexes = [0,3,5,4,8,2,6,10,9,7,14,12,11,15,13,1];
+        const reassembledString = reassembleString(scrambledString, indexes);
+        const storageKey = 'secret_value';
+        localStorage.setItem(storageKey, reassembledString);
     </script>
 </head>
 <body>

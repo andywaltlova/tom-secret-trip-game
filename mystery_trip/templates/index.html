@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" href="/static/favicon.ico" type="image/x-icon">
+    <title>Mystery Trip | Home</title>
+    <!-- Bootstrap CSS from CDN -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- Custom CSS for retro style -->
+    <style>
+        body {
+            background-color: #f5f5dc; /* Light beige for a retro feel */
+            font-family: 'Courier New', Courier, monospace; /* Retro typewriter font */
+            color: #333; /* Dark gray for contrast */
+        }
+        .xy-margin {
+            margin: 20px 0;
+        }
+        .centered {
+            text-align: center;
+        }
+        .retro-card {
+            border: 1px solid #ccc;
+            padding: 20px;
+            background-color: #f9f9f9; /* Light grayish background */
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); /* Soft shadow for retro depth */
+        }
+        /* Add a vintage style to the countdown */
+        .countdown {
+            font-family: 'Courier New', Courier, monospace; /* Use a monospaced font for a retro look */
+            font-size: 24px;
+            color: #5d4037; /* Gold color */
+            background: #f5e6ca; /* Dark background */
+            border: 2px solid #8c6b4f; /* Border for vintage feel */
+            padding: 10px;
+            display: inline-block;
+        }
+        .cute {
+            visibility: hidden;
+        }
+        /* Custom vintage button styling */
+        .btn-vintage {
+            background-color: #f5e6ca; /* Soft beige background */
+            color: #5d4037; /* Dark brown text */
+            border: 2px solid #8c6b4f; /* Dark brown border */
+            font-family: "Courier New", Courier, monospace; /* Classic font */
+            border-radius: 10px; /* Rounded corners */
+            padding: 10px 20px; /* Padding for vintage feel */
+            text-transform: uppercase; /* Text in uppercase */
+            transition: all 0.3s; /* Smooth transition for hover effect */
+        }
+
+        /* Hover effect for interaction */
+        .btn-vintage:hover {
+            background-color: #f0d9b5; /* Slightly darker on hover */
+            border-color: #7b5639; /* Darken border on hover */
+            box-shadow: 0 4px 10px -2px rgba(0, 0, 0, 0.2); /* Add subtle shadow on hover */
+        }
+    </style>
+    <script>
+        function startCountdown(targetDate) {
+            const countdownElement = document.getElementById('countdown');
+            const interval = setInterval(function() {
+                const now = new Date();
+                const diff = targetDate - now;
+
+                if (diff <= 0) {
+                    clearInterval(interval);
+                    countdownElement.textContent = '{{ final_message }}';
+                    return;
+                }
+
+                const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+                countdownElement.textContent = `${days} day${days !== 1 ? 's' : ''}, ${hours} hour${hours !== 1 ? 's' : ''}, ${minutes} minute${minutes !== 1 ? 's' : ''}, and ${seconds} second${seconds !== 1 ? 's' : ''}`;
+            }, 1000);
+        }
+
+        window.onload = function() {
+            const targetDate = new Date('{{ target_date }}');
+            startCountdown(targetDate);
+        };
+    </script>
+</head>
+<body>
+    <div class="container">
+        <div class="row justify-content-center xy-margin">
+            <div class="col-md-12 centered xy-margin">
+                <img src="static/logo.png" alt="Mystery Trip Logo" width="1000">
+            </div>
+            <div class="col-md-12 centered">
+                <div class="countdown" id="countdown">Loading ...</div>
+            </div>
+            <div class="col-md-12 centered xy-margin">
+                <div class="retro-card">
+                    <h1>Mystery trip</h1>
+                    <p>
+                        Ready for an adventure? Well, prepare your best detective gear, because I've hidden TEN mystery flags across this entire website! Think you can find them all? You'll need to channel your inner Sherlock Holmes, sharpen your magnifying glass, and brush up on your flag-spotting skills.
+                    </p>
+                    <p>
+                        But here's the kicker: without all ten, there's no way to decode the final message! So get your puzzle-solving hat on and start clicking around, because an unforgettable mystery trip awaits... if you can crack the code!
+                    </p>
+                    <p>
+                        The game is afoot — let the hunt begin!
+                    </p>
+                    <audio controls autoplay>
+                        <!-- Within my harmonies, a covert tale rests. Play me the right way, and a secret will manifest. -->
+                        <source src="{{ url_for('static', filename='sherlock_holmes.mp3') }}" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                    </audio>
+                </div>
+            </div>
+            <div class="col-md-4 centered">
+                <img src="static/plane.png" alt="Maybe something is hidden here?" width="300">
+            </div>
+            <div class="col-md-4 centered">
+                <img src="static/boat.png" alt="Or maybe it's in this image?" width="300">
+            </div>
+            <div class="col-md-4 centered">
+                <img src="static/train.png" alt="But the train also looks cool." width="300">
+            </div>
+            <div class="col-md-12 centered xy-margin cute">
+                <a href="TODO" class="btn btn-vintage">Click on me!</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS and Popper.js from CDN -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

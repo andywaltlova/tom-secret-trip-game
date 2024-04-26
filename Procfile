@@ -1,0 +1,1 @@
+web: gunicorn mystery_trip:app

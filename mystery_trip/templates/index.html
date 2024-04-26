@@ -63,22 +63,18 @@
             const interval = setInterval(function() {
                 const now = new Date();
                 const diff = targetDate - now;
-
                 if (diff <= 0) {
                     clearInterval(interval);
                     countdownElement.textContent = '{{ final_message }}';
                     return;
                 }
-
                 const days = Math.floor(diff / (1000 * 60 * 60 * 24));
                 const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
                 const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
                 const seconds = Math.floor((diff % (1000 * 60)) / 1000);
-
                 countdownElement.textContent = `${days} day${days !== 1 ? 's' : ''}, ${hours} hour${hours !== 1 ? 's' : ''}, ${minutes} minute${minutes !== 1 ? 's' : ''}, and ${seconds} second${seconds !== 1 ? 's' : ''}`;
             }, 1000);
         }
-
         window.onload = function() {
             const targetDate = new Date('{{ target_date }}');
             startCountdown(targetDate);
@@ -89,7 +85,7 @@
     <div class="container">
         <div class="row justify-content-center xy-margin">
             <div class="col-md-12 centered xy-margin">
-                <img src="static/logo.png" alt="Mystery Trip Logo" width="1000">
+                <img src="static/logo.png" alt="Mystery Trip Logo" width="100%">
             </div>
             <div class="col-md-12 centered">
                 <div class="countdown" id="countdown">Loading ...</div>
@@ -114,13 +110,13 @@
                 </div>
             </div>
             <div class="col-md-4 centered">
-                <img src="static/plane.png" alt="Maybe something is hidden here?" width="300">
+                <img src="static/plane.png" alt="Maybe something is hidden here?" width="100%">
             </div>
             <div class="col-md-4 centered">
-                <img src="static/boat.png" alt="Or maybe it's in this image?" width="300">
+                <img src="static/boat.png" alt="Or maybe it's in this image?" width="100%">
             </div>
             <div class="col-md-4 centered">
-                <img src="static/train.png" alt="But the train also looks cool." width="300">
+                <img src="static/train.png" alt="But the train also looks cool." width="100%">
             </div>
             <div class="col-md-12 centered xy-margin cute">
                 <a href="TODO" class="btn btn-vintage">Click on me!</a>

@@ -26,3 +26,7 @@ app.add_url_rule('/', endpoint='index')
 from . import flag_5
 app.register_blueprint(flag_5.bp)
 app.add_url_rule('/flag_5', endpoint='flag_5')
+
+from . import flags
+app.register_blueprint(flags.bp)
+app.add_url_rule('/flags', endpoint='flags')

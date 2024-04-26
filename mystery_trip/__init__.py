@@ -30,3 +30,7 @@ app.add_url_rule('/flag_5', endpoint='flag_5')
 from . import flags
 app.register_blueprint(flags.bp)
 app.add_url_rule('/flags', endpoint='flags')
+
+from . import panda
+app.register_blueprint(panda.bp)
+app.add_url_rule('/panda', endpoint='panda')

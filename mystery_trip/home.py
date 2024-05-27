@@ -1,5 +1,5 @@
 from flask import (
-    Blueprint, render_template
+    Blueprint, render_template, request
 )
 
 from datetime import datetime
@@ -12,12 +12,17 @@ bp = Blueprint('home', __name__)
 @bp.route("/")
 def index():
     from . import db
-    now = datetime.now()
-    target_date = datetime(2024, 5, 22)
-    if now > target_date:
-        final_message = db.get_db().execute("SELECT message_text FROM messages WHERE id = 10").fetchone()['message_text']
+    timestamp = request.args.get('time')
+    if timestamp:
+        now = datetime.fromtimestamp(int(timestamp))
     else:
-        final_message = "The flag is one refresh away!"
+        now = datetime.now()
+
+    target_date = datetime(2024, 5, 22)
+    if now < target_date:
+        final_message = "Put the time as an argument!"
+    else:
+        final_message = db.get_db().execute("SELECT message_text FROM messages WHERE id = 10").fetchone()['message_text']
 
     return render_template(
         'index.html',

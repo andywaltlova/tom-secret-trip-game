@@ -22,7 +22,7 @@ def index():
     if now < target_date:
         final_message = "Put the time as an argument!"
     elif now > target_date:
-        final_message = "That's too far in the future!"
+        final_message = "That is too far in the future!"
     else:
         final_message = db.get_db().execute("SELECT message_text FROM messages WHERE id = 10").fetchone()['message_text']
 

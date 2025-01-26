@@ -21,6 +21,8 @@ def index():
     target_date = datetime(2024, 5, 22)
     if now < target_date:
         final_message = "Put the time as an argument!"
+    elif now > target_date:
+        final_message = "That's too far in the future!"
     else:
         final_message = db.get_db().execute("SELECT message_text FROM messages WHERE id = 10").fetchone()['message_text']
 
